@@ -2,10 +2,9 @@ package com.cashcall.merchant.Controller;
 
 import com.cashcall.merchant.MerchantService.MerchantService;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,12 +22,33 @@ public class MerchantController {
     }
 
     @GetMapping("list")
-    public List<com.cashcall.merchant.Controller.Merchant> getMerchant() {
+    public List<Merchant> getMerchant() {
         return merchantService.getMerchant();
+    }
+
+    @PostMapping("list")
+    public void registerMerchant(
+            @RequestBody Merchant merchant) {// take the req body and map it into the merchant method
+        merchantService.addMerchant(merchant);
+    }
+
+    @DeleteMapping(path = "/list/{merchantId}")
+    public void deleteMerchant (@PathVariable("merchantId") Long merchantId) {
+        merchantService.deleteMerchant(merchantId);
+    }
+
+    @Transactional // means you don't have to implement any jpql Query.
+    @PutMapping("/list/{merchantId}")
+    public void updateMerchant (@PathVariable("merchantId") Long merchantId, Merchant merchantData) {
+        merchantService.updateMerchant(merchantId, merchantData);
     }
 }
 
 
 /**
+ *
+ *
+ *
+ *
  *
  */

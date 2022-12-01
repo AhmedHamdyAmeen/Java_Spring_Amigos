@@ -10,7 +10,6 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-
 public class MerchantApplication {
 
     public static void main(String[] args) {
