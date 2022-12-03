@@ -2,7 +2,6 @@ package com.cashcall.merchant.Controller;
 
 import com.cashcall.merchant.MerchantService.MerchantService;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,22 +32,20 @@ public class MerchantController {
     }
 
     @DeleteMapping(path = "/list/{merchantId}")
-    public void deleteMerchant (@PathVariable("merchantId") Long merchantId) {
+    public void deleteMerchant(@PathVariable("merchantId") Long merchantId) {
         merchantService.deleteMerchant(merchantId);
     }
 
-    @Transactional // means you don't have to implement any jpql Query.
     @PutMapping("/list/{merchantId}")
-    public void updateMerchant (@PathVariable("merchantId") Long merchantId, Merchant merchantData) {
-        merchantService.updateMerchant(merchantId, merchantData);
+    public void updateMerchant(
+            @PathVariable("merchantId") Long merchantId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email,
+            Merchant merchantData) {
+        merchantService.updateMerchant(merchantId, merchantData, name, email);
     }
 }
 
-
 /**
- *
- *
- *
- *
  *
  */

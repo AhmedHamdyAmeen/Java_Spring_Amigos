@@ -1,13 +1,16 @@
 package com.cashcall.merchant.MerchantService;
 
 import com.cashcall.merchant.Controller.Merchant;
+import com.cashcall.merchant.MerchantApplication;
 import com.cashcall.merchant.Repository.MerchantRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service // tell the compiler this is a service class
@@ -60,14 +63,25 @@ public class MerchantService {
         merchantRepository.deleteById(merchantId);
     }
 
-    public void updateMerchant(Long merchantId, Merchant merchantData) {
-        boolean isMerchantExist = merchantRepository.existsById(merchantId);
+    @Transactional // means you don't have to implement any jpql Query.
+    public void updateMerchant(Long merchantId, Merchant merchantData, String name, String email) {
 
-        if (!isMerchantExist) {
-            throw new IllegalStateException("Merchant: " + merchantId + " is not exists! 😲");
+        Merchant merchant = merchantRepository.findById(merchantId)
+                .orElseThrow(() -> new IllegalStateException("Merchant: " + merchantId + " is not exists! 😲"));
+
+        if (email != null && email.length() > 0 &&
+                !Objects.equals(merchant.getEmail(), email)) {
+            Optional<Merchant> merchantOptional = merchantRepository.findMerchantByEmail(email);
+
+            if (merchantOptional.isPresent()) {
+                throw new IllegalStateException("This email is already exists! 😥🤷‍");
+            }
+            merchant.setEmail(email);
         }
 
-        merchantRepository.save(merchantData);
+        if (name != null && name.length() > 0 && !Objects.equals(merchant.getName(), name)) {
+            merchant.setName(name);
+        }
     }
 }
 
