@@ -1,6 +1,6 @@
 package com.cashcall.merchant.Repository;
 
-import com.cashcall.merchant.Controller.Merchant;
+import com.cashcall.merchant.Model.Merchant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package com.cashcall.merchant;
 
-import com.cashcall.merchant.Controller.Merchant;
+import com.cashcall.merchant.Model.Merchant;
 import com.cashcall.merchant.Repository.MerchantRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

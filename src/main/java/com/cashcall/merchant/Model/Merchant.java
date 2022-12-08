@@ -1,4 +1,4 @@
-package com.cashcall.merchant.Controller;
+package com.cashcall.merchant.Model;
 
 import jakarta.persistence.*;
 

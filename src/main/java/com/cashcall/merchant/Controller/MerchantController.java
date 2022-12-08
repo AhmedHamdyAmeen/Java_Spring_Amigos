@@ -2,6 +2,7 @@ package com.cashcall.merchant.Controller;
 
 import com.cashcall.merchant.MerchantService.MerchantService;
 
+import com.cashcall.merchant.Model.Merchant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

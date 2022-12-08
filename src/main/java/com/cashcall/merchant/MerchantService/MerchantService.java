@@ -1,14 +1,11 @@
 package com.cashcall.merchant.MerchantService;
 
-import com.cashcall.merchant.Controller.Merchant;
-import com.cashcall.merchant.MerchantApplication;
+import com.cashcall.merchant.Model.Merchant;
 import com.cashcall.merchant.Repository.MerchantRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,8 +28,8 @@ public class MerchantService {
 
         /*
         return List.of(
-                new com.cashcall.merchant.Controller.Merchant(5L, "Ahmed", "e@e.com", LocalDate.of(2000, 3, 6), 23),
-                new com.cashcall.merchant.Controller.Merchant(8L, "Saad", "d@e.com", LocalDate.of(2022, 4, 6), 26)
+                new com.cashcall.merchant.Model.Merchant(5L, "Ahmed", "e@e.com", LocalDate.of(2000, 3, 6), 23),
+                new com.cashcall.merchant.Model.Merchant(8L, "Saad", "d@e.com", LocalDate.of(2022, 4, 6), 26)
         );
         */
     }
@@ -90,7 +87,9 @@ public class MerchantService {
 /*
  * -------------------- *
  *
- * spring data jpa p
+ *
+ * RDC: Remote Desktop connection
+ *
  *
  *
  *
